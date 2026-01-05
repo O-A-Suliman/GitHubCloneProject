@@ -1,0 +1,83 @@
+# ========== Python ==========
+# لغة Python وحزم virtualenv
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+ENV/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# مكتبة sqlite3 (قاعدة البيانات)
+db.sqlite3
+*.sqlite3
+
+# ملفات Django
+*.log
+local_settings.py
+
+# IDE و محررات
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+.env
+.env.local
+
+# ========== Node.js / React ==========
+# مجلد node_modules
+node_modules/
+npm-debug.log
+yarn-error.log
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+
+# مجلد dist أو build
+dist/
+build/
+.dist/
+
+# متغيرات البيئة
+.env
+.env.local
+.env.*.local
+
+# ملفات VSCode
+.vscode/*
+!.vscode/extensions.json
+.history/
+
+# ملفات خاصة بـ OS
+.DS_Store
+Thumbs.db
+
+# ========== أخرى ==========
+# ملفات النسخ الاحتياطية
+*.bak
+*.backup
+*.tmp
+
+# ملفات قفل النسخ
+package-lock.json
+yarn.lock
+poetry.lock

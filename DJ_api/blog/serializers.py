@@ -52,10 +52,12 @@ class SimpleAuthorSerializer(serializers.ModelSerializer):
         fields=["id",'username', 'first_name', 'last_name']
 
 class BlogSerializer(serializers.ModelSerializer):
-    author=SimpleAuthorSerializer(read_only=True)
+    author = SimpleAuthorSerializer(read_only=True)
     class Meta:
-        model=Blog
-        fields='__all__'
+        model = Blog
+        fields = '__all__'
+        # ✅ جعل حقل author كـ read_only لمنع التلاعب به
+        read_only_fields = ('author',)
 
 
 class UpdateProfileSerializer(serializers.ModelSerializer):

@@ -25,9 +25,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-%s8*du#7u_f)!8uspy2s)x)gi^&%yi*z+d3msyl*2)8oiqw_vm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+# للتطوير: DEBUG = True
+# للإنتاج: DEBUG = False
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# أضف اسماء النطاقات المسموحة
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'localhost:8000', 'yourdomain.com']
 
 
 # Application definition
@@ -41,10 +44,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'blog',
     'rest_framework',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -128,13 +133,25 @@ MEDIA_ROOT=BASE_DIR/"media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'blog.CustomUser'
 
+# ✅ إعدادات CORS - للسماح لـ React بالوصول إلى API
+CORS_ALLOWED_ORIGINS = [
+    'http://localhost:3000',
+    'http://localhost:5173',
+    'http://127.0.0.1:3000',
+    'http://127.0.0.1:5173',
+]
+
+CORS_ALLOW_CREDENTIALS = True
+
 REST_FRAMEWORK = {
-    
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    )
-    
+    ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10
 }
+
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=5)}
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),
+}
